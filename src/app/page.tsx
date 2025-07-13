@@ -390,8 +390,8 @@ const Portfolio = () => {
       tech: ["Next.js", "Three.js", "Tailwind CSS"],
       description:
         "A modern 3D portfolio website with interactive elements and smooth animations.",
-      github: "https://github.com",
-      live: "https://example.com",
+      github: "https://github.com/LoveShah21/3d-portfolio",
+      live: "https://3d-portfolio-five-alpha.vercel.app",
     },
     {
       title: "E-commerce Platform",
