@@ -421,7 +421,6 @@ const Portfolio = () => {
     "Node.js",
     "GSAP",
     "Figma",
-    "Blender",
     "UI/UX Design",
   ];
 
@@ -525,8 +524,8 @@ const Portfolio = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Creative Developer & Designer crafting immersive digital
-              experiences
+              MERN Stack Developer shaping performant digital solutions with
+              end-to-end hosting expertise
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -578,18 +577,39 @@ const Portfolio = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="text-2xl font-bold text-white">
-                  Creative Problem Solver
+                  Full-Stack Developer & Hosting Expert
                 </h3>
                 <p className="text-gray-300">
-                  I&apos;m a passionate developer and designer with 5+ years of
-                  experience creating digital experiences that blend aesthetics
-                  with functionality. My approach combines technical expertise
-                  with creative thinking to deliver innovative solutions.
+                  Hi, I&apos;m <strong>Love Shah</strong>, a passionate and
+                  detail-oriented MERN Stack Developer with over{" "}
+                  <strong>3 years of hands-on experience</strong> building
+                  robust, responsive, and user-centric web applications. My
+                  journey in full-stack development has given me a strong
+                  foundation in{" "}
+                  <strong>MongoDB, Express.js, React.js, and Node.js</strong>,
+                  along with a deep understanding of modern development
+                  workflows and deployment strategies.
                 </p>
                 <p className="text-gray-300">
-                  When I&apos;m not coding, you can find me experimenting with
-                  3D art, contributing to open-source projects, or exploring new
-                  technologies in the creative coding space.
+                  My skill set extends beyond development — I have solid grasp
+                  on
+                  <strong>
+                    {" "}
+                    web hosting, server deployment, and DNS management
+                  </strong>
+                  , ensuring every project I build performs reliably in
+                  production.
+                </p>
+                <p className="text-gray-300">
+                  I thrive in collaborative environments, love solving
+                  real-world problems through technology, and continuously
+                  explore new tools to improve performance, security, and
+                  scalability. Whether it&apos;s building intuitive UIs or
+                  optimizing backend performance, I&apos;m committed to
+                  delivering clean, efficient, and maintainable code.
+                </p>
+                <p className="text-gray-300">
+                  Let&apos;s build something impactful together!
                 </p>
                 <div className="pt-4">
                   <div className="flex gap-4">
