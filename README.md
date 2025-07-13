@@ -35,8 +35,8 @@ A modern, interactive 3D portfolio website built with Next.js, React, Three.js, 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/LoveShah21/3d-portfolio
-   cd 3d-portfolio/portfolio
+   git clone https://github.com/LoveShah21/3d-portfolio.git
+   cd 3d-portfolio
    ```
 2. Install dependencies:
    ```bash
@@ -45,7 +45,7 @@ A modern, interactive 3D portfolio website built with Next.js, React, Three.js, 
    yarn install
    ```
 3. Set up environment variables:
-   - Create a `.env.local` file in the `portfolio` directory.
+   - Create a `.env` file in the `portfolio` directory.
    - Add your EmailJS keys:
      ```env
      NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
