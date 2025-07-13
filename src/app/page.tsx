@@ -25,7 +25,7 @@ import { Points, PointsMaterial, BufferGeometry, BufferAttribute } from "three";
 extend({ Points, PointsMaterial, BufferGeometry, BufferAttribute });
 
 // FloatingNav Component
-const FloatingNav = () => {
+const FloatingNav = ({ mounted }: { mounted: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -38,37 +38,32 @@ const FloatingNav = () => {
     { name: "Contact", href: "#contact", icon: <MessageCircle size={18} /> },
   ];
 
-  const controlNavbar = () => {
-    if (typeof window !== "undefined") {
+  useEffect(() => {
+    if (!mounted) return;
+    const controlNavbar = () => {
       if (window.scrollY > lastScrollY) {
-        // Scrolling down
         setVisible(false);
       } else {
-        // Scrolling up
         setVisible(true);
       }
       setLastScrollY(window.scrollY);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
+    };
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY, mounted]);
 
   const scrollToSection = (href: string) => {
-    if (typeof window !== "undefined") {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+    if (!mounted) return;
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsOpen(false);
   };
+
+  if (!mounted) return null;
 
   return (
     <motion.nav
@@ -106,7 +101,7 @@ const FloatingNav = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <motion.div
-          className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-lg py-2 md:hidden"
+          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-xl py-4 w-40 flex flex-col items-center shadow-lg md:hidden"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -115,7 +110,8 @@ const FloatingNav = () => {
             <button
               key={item.name}
               onClick={() => scrollToSection(item.href)}
-              className="flex items-center gap-3 w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800 transition-all text-sm"
+              className="flex items-center justify-center gap-2 w-full text-center px-0 py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all text-base font-medium"
+              style={{ borderRadius: 8 }}
             >
               {item.icon}
               {item.name}
@@ -366,13 +362,12 @@ const SkillSphere = ({ skills }: { skills: string[] }) => {
 
 // Main Portfolio Component
 const Portfolio = () => {
-  // const [mounted, setMounted] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [year, setYear] = useState(2025); // Default to current year
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsClient(true);
+    setMounted(true);
     setYear(new Date().getFullYear());
   }, []);
 
@@ -427,9 +422,12 @@ const Portfolio = () => {
   const handleDownloadResume = () => {
     if (typeof window !== "undefined") {
       const link = document.createElement("a");
-      link.href = "/assets/resume.pdf"; // Ensure this path is correct
+      // Vercel is case-sensitive, so use the correct case for the file name
+      link.href = "/assets/Resume.pdf";
       link.download = "Love_Shah_Resume.pdf";
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     }
   };
 
@@ -486,7 +484,7 @@ const Portfolio = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
       {/* Particle background */}
       <div className="fixed inset-0 z-0">
-        {isClient ? (
+        {mounted ? (
           <Canvas camera={{ position: [0, 0, 1] }}>
             <Suspense fallback={null}>
               <ParticleBackground />
@@ -495,7 +493,7 @@ const Portfolio = () => {
         ) : null}
       </div>
 
-      {isClient && <FloatingNav />}
+      <FloatingNav mounted={mounted} />
 
       <main ref={containerRef} className="relative z-10">
         {/* Hero Section */}
@@ -711,7 +709,7 @@ const Portfolio = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
               >
-                {isClient ? (
+                {mounted ? (
                   <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
                     <ambientLight intensity={0.5} />
                     <pointLight position={[10, 10, 10]} />
