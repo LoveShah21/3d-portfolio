@@ -3,6 +3,8 @@ import React, { useRef, useEffect, useState, Suspense } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Canvas, useFrame, useThree, extend } from "@react-three/fiber";
 import { Text, OrbitControls } from "@react-three/drei";
+import { SplineScene } from "@/components/ui/spline";
+import { Spotlight } from "@/components/ui/spotlight";
 import { motion, useScroll, useTransform } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import {
@@ -312,7 +314,7 @@ const SkillTag = ({
       onPointerOut={() => setHover(false)}
       onClick={() => setActive(children)}
     >
-      {children}
+      {typeof children === "string" ? children : children}
     </Text>
   );
 };
@@ -328,6 +330,7 @@ const SkillSphere = ({ skills }: { skills: string[] }) => {
     }
   });
 
+  // Ensure skills are displayed in the original order
   const skillPositions = React.useMemo(() => {
     if (!skills || skills.length === 0) return [];
 
@@ -346,16 +349,18 @@ const SkillSphere = ({ skills }: { skills: string[] }) => {
 
   return (
     <group ref={meshRef}>
-      {skills?.map((skill, i) => (
-        <SkillTag
-          key={skill}
-          position={skillPositions[i] as [number, number, number]}
-          active={activeSkill === skill}
-          setActive={setActiveSkill}
-        >
-          {skill}
-        </SkillTag>
-      ))}
+      {skills &&
+        skillPositions &&
+        skills.map((skill, i) => (
+          <SkillTag
+            key={skill}
+            position={skillPositions[i] as [number, number, number]}
+            active={activeSkill === skill}
+            setActive={setActiveSkill}
+          >
+            {skill}
+          </SkillTag>
+        ))}
     </group>
   );
 };
@@ -558,13 +563,17 @@ const Portfolio = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">👨‍💻</div>
-                    <p>Profile Image</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                {/* Spotlight effect */}
+                <Spotlight
+                  className="-top-20 left-0 md:left-10 md:-top-10"
+                  fill="white"
+                />
+
+                {/* 3D Spline Scene */}
+                <SplineScene
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
               </motion.div>
 
               <motion.div
