@@ -69,7 +69,7 @@ const FloatingNav = ({ mounted }: { mounted: boolean }) => {
 
   return (
     <motion.nav
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-full px-6 py-3"
+      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 bg-gray-900/50 rounded-full px-6 py-3"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.3 }}
@@ -103,7 +103,7 @@ const FloatingNav = ({ mounted }: { mounted: boolean }) => {
       {/* Mobile Menu */}
       {isOpen && (
         <motion.div
-          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-xl py-4 w-40 flex flex-col items-center shadow-lg md:hidden"
+          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900/95 rounded-xl py-4 w-40 flex flex-col items-center shadow-lg md:hidden"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -162,13 +162,13 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div
-      className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-indigo-500 transition-all duration-300"
+      className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-gray-500 transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -5 }}
     >
-      <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-indigo-600/20 relative overflow-hidden">
+      <div className="aspect-video relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4">
           <h3 className="text-white font-semibold text-lg mb-2">
@@ -625,7 +625,7 @@ const Portfolio = () => {
                       onClick={handleDownloadResume}
                     >
                       <Download size={18} className="flex-shrink-0" />
-                      <span className="inline-block">Download Resume</span>
+                      <span className="inline-block">Resume</span>
                     </AnimatedButton>
                   </div>
                 </div>
