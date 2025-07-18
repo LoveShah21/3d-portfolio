@@ -405,7 +405,7 @@ const Portfolio = () => {
       title: "Attendance Management System",
       tech: ["React", "Node.js", "Express.js", "MongoDB"],
       description:
-        "Interactive dashboard for student and coach attendance management with real-time updates.",
+        "Interactive dashboard for student and coach attendance management with real-time updates.[Not hosted yet]",
       github: "https://github.com/LoveShah21/attendance-management-system",
       live: "https://github.com/nonexistent-page-404",
     },
@@ -486,7 +486,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div className="min-h-screen w-full h-[100dvh] ">
       {/* Particle background */}
       <div className="fixed inset-0 z-0">
         {mounted ? (
@@ -557,7 +557,7 @@ const Portfolio = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
-                className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-gray-700 bg-gradient-to-br from-purple-500/20 to-indigo-600/20"
+                className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden "
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -999,7 +999,7 @@ const Portfolio = () => {
       </main>
 
       <footer className="py-8 px-4 border-t border-gray-800 text-center text-gray-400 relative z-10">
-        <p>© {year} Love Shah. All rights reserved.</p>
+        <p>© {mounted ? new Date().getFullYear() : ""} Love Shah. All rights reserved.</p>
       </footer>
     </div>
   );
