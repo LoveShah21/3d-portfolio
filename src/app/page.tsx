@@ -368,12 +368,12 @@ const SkillSphere = ({ skills }: { skills: string[] }) => {
 // Main Portfolio Component
 const Portfolio = () => {
   const [mounted, setMounted] = useState(false);
-  const [year, setYear] = useState(2025); // Default to current year
+  // const [year, setYear] = useState(2025); // Default to current year
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-    setYear(new Date().getFullYear());
+    // setYear(new Date().getFullYear());
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -999,7 +999,10 @@ const Portfolio = () => {
       </main>
 
       <footer className="py-8 px-4 border-t border-gray-800 text-center text-gray-400 relative z-10">
-        <p>© {mounted ? new Date().getFullYear() : ""} Love Shah. All rights reserved.</p>
+        <p>
+          © {mounted ? new Date().getFullYear() : ""} Love Shah. All rights
+          reserved.
+        </p>
       </footer>
     </div>
   );
