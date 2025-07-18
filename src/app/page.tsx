@@ -635,10 +635,7 @@ const Portfolio = () => {
         </section>
 
         {/* Projects Section */}
-        <section
-          id="projects"
-          className="py-20 px-4 bg-gray-900/50 backdrop-blur-sm"
-        >
+        <section id="projects" className="py-20 px-4 bg-gray-900/20">
           <div className="container mx-auto max-w-6xl">
             <motion.h2
               className="text-4xl font-bold text-white mb-4 text-center"
@@ -745,10 +742,7 @@ const Portfolio = () => {
         </section>
 
         {/* Contact Section */}
-        <section
-          id="contact"
-          className="py-20 px-4 bg-gray-900/50 backdrop-blur-sm"
-        >
+        <section id="contact" className="py-20 px-4 bg-gray-900/20">
           <div className="container mx-auto max-w-4xl">
             <motion.h2
               className="text-4xl font-bold text-white mb-4 text-center"
